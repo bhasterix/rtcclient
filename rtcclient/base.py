@@ -1,9 +1,11 @@
 import abc
 import logging
-from rtcclient import requests
+
 import xmltodict
-from rtcclient import urlunquote, OrderedDict
+
 from rtcclient import exception
+from rtcclient import requests
+from rtcclient import urlunquote, OrderedDict
 from rtcclient.utils import token_expire_handler
 
 

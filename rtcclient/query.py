@@ -1,8 +1,10 @@
-from rtcclient.base import RTCBase
 import logging
-from rtcclient import urlquote
-from rtcclient import exception
+
 import six
+
+from rtcclient import exception
+from rtcclient import urlquote
+from rtcclient.base import RTCBase
 
 
 class Query(RTCBase):
@@ -49,8 +51,8 @@ class Query(RTCBase):
         """
 
         pa_id = (self.rtc_obj
-                     ._pre_get_resource(projectarea_id=projectarea_id,
-                                        projectarea_name=projectarea_name))
+                 ._pre_get_resource(projectarea_id=projectarea_id,
+                                    projectarea_name=projectarea_name))
 
         self.log.info("Start to query workitems with query string: %s",
                       query_str)
@@ -58,12 +60,12 @@ class Query(RTCBase):
         rp = returned_properties
 
         return (self.rtc_obj
-                    ._get_paged_resources("Query",
-                                          projectarea_id=pa_id,
-                                          customized_attr=query_str,
-                                          page_size="100",
-                                          returned_properties=rp,
-                                          archived=archived))
+                ._get_paged_resources("Query",
+                                      projectarea_id=pa_id,
+                                      customized_attr=query_str,
+                                      page_size="100",
+                                      returned_properties=rp,
+                                      archived=archived))
 
     def getAllSavedQueries(self, projectarea_id=None, projectarea_name=None,
                            creator=None, saved_query_name=None):
@@ -95,8 +97,8 @@ class Query(RTCBase):
         """
 
         pa_id = (self.rtc_obj
-                     ._pre_get_resource(projectarea_id=projectarea_id,
-                                        projectarea_name=projectarea_name))
+                 ._pre_get_resource(projectarea_id=projectarea_id,
+                                    projectarea_name=projectarea_name))
 
         filter_rule = None
         if creator is not None:
@@ -116,10 +118,10 @@ class Query(RTCBase):
                            "saved query title is %s", saved_query_name)
 
         return (self.rtc_obj
-                    ._get_paged_resources("SavedQuery",
-                                          projectarea_id=pa_id,
-                                          page_size="100",
-                                          filter_rule=filter_rule))
+                ._get_paged_resources("SavedQuery",
+                                      projectarea_id=pa_id,
+                                      page_size="100",
+                                      filter_rule=filter_rule))
 
     def getSavedQueriesByName(self, saved_query_name, projectarea_id=None,
                               projectarea_name=None, creator=None):
@@ -258,7 +260,7 @@ class Query(RTCBase):
     def _runSavedQuery(self, saved_query_id, returned_properties=None):
         rp = returned_properties
         return (self.rtc_obj
-                    ._get_paged_resources("RunQuery",
-                                          page_size="100",
-                                          customized_attr=saved_query_id,
-                                          returned_properties=rp))
+                ._get_paged_resources("RunQuery",
+                                      page_size="100",
+                                      customized_attr=saved_query_id,
+                                      returned_properties=rp))

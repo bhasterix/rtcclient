@@ -1,10 +1,12 @@
-import logging
 import functools
+import logging
 from xml.parsers.expat import ExpatError
-import xmltodict
-from rtcclient.exception import RTCException, BadValue
+
 import six
+import xmltodict
 from lxml import etree
+
+from rtcclient.exception import RTCException, BadValue
 
 
 def setup_basic_logging():

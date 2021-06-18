@@ -1,4 +1,5 @@
 import requests
+
 try:
     requests.packages.urllib3.disable_warnings()
 except:
@@ -25,6 +26,7 @@ except ImportError:  # pragma no cover
         OrderedDict = dict
 
 import os
+
 _path = os.path.realpath(os.path.dirname(__file__))
 _search_path = os.path.join(_path, 'templates')
 

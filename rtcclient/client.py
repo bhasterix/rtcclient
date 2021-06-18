@@ -1,20 +1,18 @@
-from rtcclient.base import RTCBase
-import xmltodict
-from rtcclient import exception
-from rtcclient.project_area import ProjectArea
-from rtcclient.workitem import Workitem
-from rtcclient.models import TeamArea, Member, Administrator, PlannedFor
-from rtcclient.models import Severity, Priority, ItemType, SavedQuery
-from rtcclient.models import FiledAgainst, FoundIn, Comment, Action, State
-from rtcclient.models import IncludedInBuild, ChangeSet, Attachment
-import logging
-from rtcclient import urlparse, urlquote, urlencode, OrderedDict
 import copy
-from rtcclient.template import Templater
-from rtcclient import _search_path
-from rtcclient.query import Query
+import logging
+
 import six
+import xmltodict
+
+from rtcclient import _search_path
+from rtcclient import exception
+from rtcclient import urlparse, urlquote, OrderedDict
+from rtcclient.base import RTCBase
+from rtcclient.models import Member
+from rtcclient.query import Query
+from rtcclient.template import Templater
 from rtcclient.utils import capitalize
+from rtcclient.workitem import Workitem
 
 
 class RTCClient(RTCBase):
@@ -1356,7 +1354,7 @@ class RTCClient(RTCBase):
 
         try:
             total_count = int(raw_data.get("oslc_cm:Collection")
-                                      .get("@oslc_cm:totalCount"))
+                              .get("@oslc_cm:totalCount"))
             if total_count == 0:
                 self.log.warning("No %ss are found", resource_name)
                 return None
@@ -1367,7 +1365,7 @@ class RTCClient(RTCBase):
 
         while True:
             entries = (raw_data.get("oslc_cm:Collection")
-                               .get(entry_map[resource_name]))
+                       .get(entry_map[resource_name]))
 
             if entries is None:
                 break
@@ -1432,7 +1430,7 @@ class RTCClient(RTCBase):
         if projectarea_url is not None:
             try:
                 if (entry.get("rtc_cm:projectArea")
-                         .get("@rdf:resource")) != projectarea_url:
+                        .get("@rdf:resource")) != projectarea_url:
                     return None
             except AttributeError:
                 pass

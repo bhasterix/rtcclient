@@ -1,13 +1,15 @@
-from rtcclient.base import FieldBase
-import logging
-import xmltodict
 import copy
-from rtcclient import exception, OrderedDict
-from requests.exceptions import HTTPError
-from rtcclient.models import Comment, Attachment
-import six
 import json
+import logging
 import os
+
+import six
+import xmltodict
+from requests.exceptions import HTTPError
+
+from rtcclient import exception, OrderedDict
+from rtcclient.base import FieldBase
+from rtcclient.models import Comment, Attachment
 
 
 class Workitem(FieldBase):
@@ -408,8 +410,8 @@ class Workitem(FieldBase):
                                                         faction_rule)
 
         cust_attr = (self.raw_data.get("rtc_cm:state")
-                                  .get("@rdf:resource")
-                                  .split("/")[-2])
+            .get("@rdf:resource")
+            .split("/")[-2])
         return self.rtc_obj._get_paged_resources("Action",
                                                  projectarea_id=self.contextId,
                                                  customized_attr=cust_attr,
@@ -425,8 +427,8 @@ class Workitem(FieldBase):
         """
 
         cust_attr = (self.raw_data.get("rtc_cm:state")
-                         .get("@rdf:resource")
-                         .split("/")[-2])
+            .get("@rdf:resource")
+            .split("/")[-2])
         return self.rtc_obj._get_paged_resources("State",
                                                  projectarea_id=self.contextId,
                                                  customized_attr=cust_attr,
@@ -466,11 +468,11 @@ class Workitem(FieldBase):
                       "parentworkitem.parent")
         rp = returned_properties
         parent = (self.rtc_obj
-                      ._get_paged_resources("Parent",
-                                            workitem_id=self.identifier,
-                                            customized_attr=parent_tag,
-                                            page_size="5",
-                                            returned_properties=rp))
+                  ._get_paged_resources("Parent",
+                                        workitem_id=self.identifier,
+                                        customized_attr=parent_tag,
+                                        page_size="5",
+                                        returned_properties=rp))
 
         # No more than one parent
         if parent:
@@ -493,11 +495,11 @@ class Workitem(FieldBase):
                         "parentworkitem.children")
         rp = returned_properties
         return (self.rtc_obj
-                    ._get_paged_resources("Children",
-                                          workitem_id=self.identifier,
-                                          customized_attr=children_tag,
-                                          page_size="10",
-                                          returned_properties=rp))
+                ._get_paged_resources("Children",
+                                      workitem_id=self.identifier,
+                                      customized_attr=children_tag,
+                                      page_size="10",
+                                      returned_properties=rp))
 
     def getChangeSets(self):
         """Get all the ChangeSets of this workitem
@@ -510,10 +512,10 @@ class Workitem(FieldBase):
         changeset_tag = ("rtc_cm:com.ibm.team.filesystem.workitems."
                          "change_set.com.ibm.team.scm.ChangeSet")
         return (self.rtc_obj
-                    ._get_paged_resources("ChangeSet",
-                                          workitem_id=self.identifier,
-                                          customized_attr=changeset_tag,
-                                          page_size="10"))
+                ._get_paged_resources("ChangeSet",
+                                      workitem_id=self.identifier,
+                                      customized_attr=changeset_tag,
+                                      page_size="10"))
 
     def addParent(self, parent_id):
         """Add a parent to current workitem
@@ -828,7 +830,7 @@ class Workitem(FieldBase):
         attachment_tag = ("rtc_cm:com.ibm.team.workitem.linktype."
                           "attachment.attachment")
         return (self.rtc_obj
-                    ._get_paged_resources("Attachment",
-                                          workitem_id=self.identifier,
-                                          customized_attr=attachment_tag,
-                                          page_size="10"))
+                ._get_paged_resources("Attachment",
+                                      workitem_id=self.identifier,
+                                      customized_attr=attachment_tag,
+                                      page_size="10"))

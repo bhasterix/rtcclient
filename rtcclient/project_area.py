@@ -1,9 +1,11 @@
-from rtcclient.base import FieldBase
-import xmltodict
 import logging
-from rtcclient import exception
-from rtcclient.models import Role
+
 import six
+import xmltodict
+
+from rtcclient import exception
+from rtcclient.base import FieldBase
+from rtcclient.models import Role
 
 
 class ProjectArea(FieldBase):

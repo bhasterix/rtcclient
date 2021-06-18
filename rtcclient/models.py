@@ -1,9 +1,11 @@
-from rtcclient.base import FieldBase
-from rtcclient import urlunquote, OrderedDict
 import logging
-import xmltodict
-import re
 import os
+import re
+
+import xmltodict
+
+from rtcclient import urlunquote, OrderedDict
+from rtcclient.base import FieldBase
 
 
 class Role(FieldBase):

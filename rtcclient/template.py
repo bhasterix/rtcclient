@@ -1,14 +1,16 @@
-from rtcclient.base import RTCBase
 import logging
-import xmltodict
 import os
+from xml.sax.saxutils import escape
+
 import jinja2
 import jinja2.meta
-from rtcclient import exception
-from rtcclient import _search_path
 import six
+import xmltodict
+
+from rtcclient import _search_path
+from rtcclient import exception
+from rtcclient.base import RTCBase
 from rtcclient.utils import remove_empty_elements
-from xml.sax.saxutils import escape
 
 
 class Templater(RTCBase):
